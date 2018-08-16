@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'></link>
+</head>
+<body style="background-color: #F6F6F6">
+<div th:insert="navbar :: #nav">
+
+</div>
+
+<div>
+
+    <!--/*@thymesVar id="LoginForm" type=""*/-->
+    <form method="post" th:action="@{/login}" class="form-horizontal">
+        <input type="hidden" name="action" value="login"></input>
+        <h1 style="position:relative; left: 140px;">Login</h1>
+
+        <div th:if="${loginError}" style="position: absolute; top: 60px; left: 325px; width: 780px"
+             class="alert alert-danger">Invalid username or password.
+        </div>
+
+
+        <div class="form-group">
+            <label for="login" class="col-sm-2 control-label">login</label>
+            <div class="col-sm-5">
+                <input type="text" name="username" class="form-control" id="login" placeholder="Enter login"></input>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-5">
+                <input type="password" class="form-control" name="password" id="password"
+                       placeholder="Enter Password"></input>
+            </div>
+
+            <div class="col-sm-offset-2 col-sm-5 " style="margin-top: 0.6%">
+                <button type="submit" name="submit" class="btn btn-primary">Login</button>
+            </div>
+
+        </div>
+
+
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'></link>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+    <style>
+        .login-position {
+            position: absolute;
+            width: 10%;
+            left: 40%;
+        }
+
+    </style>
+
+</head>
+
+<body style="background-color: #F6F6F6">
+
+<div class="active" th:insert="navbar :: #nav">
+
+</div>
+
+<div class="main">
+    <div id="create_login">
+
+        <div>
+            <!--/*@thymesVar id="User" type=""*/-->
+            <form th:action="@{/register}" th:object="${User}" method="post" class="form-horizontal">
+
+                <h1 style="position:relative; left: 140px;">Create an Account</h1>
+                <div th:if="${registerSuccessful}" style="position: relative; left: 325px; width: 780px">
+                    <div class="alert alert-success">
+                        Account succesfully created.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerUsername" class="col-sm-2 control-label">Username</label>
+                    <div class="col-sm-5">
+                        <input type="text" th:field="*{username}" class="form-control" id="registerUsername"
+                               placeholder="Enter Username"></input>
+                        <p th:if="${#fields.hasErrors('username')}"
+                           th:errors="*{username}">Validation error</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-5">
+                        <input type="password" th:field="*{password}" class="form-control" id="password"
+                               placeholder="Enter Password"></input>
+                        <p th:if="${#fields.hasErrors('password')}"
+                           th:errors="*{password}">Validation error</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Confirm Password</label>
+                    <div class="col-sm-5">
+                        <input type="password" th:field="*{passwordConfirmation}" class="form-control"
+                               name="password_confirm" id="passwordconfirm" placeholder="Confirm Password"></input>
+                        <p th:if="${#fields.hasErrors('passwordConfirmation')}"
+                           th:errors="*{passwordConfirmation}">Validation error</p>
+                        <p th:if="${#fields.hasErrors('global')}"
+                           th:each="err : ${#fields.errors('global')}" th:text="${err}">Input is incorrect</p>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-5">
+                        <button type="submit" value="submit" id="submit" class="btn btn-primary">Create Account</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

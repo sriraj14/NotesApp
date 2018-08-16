@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'></link>
+
+    <style>
+        div.justified {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+</head>
+<body>
+
+<div th:insert="navbar :: navLoggedin">
+
+</div>
+
+<div>
+    <form method="post" class="form-horizontal" th:action="@{/CreateANote}" th:object="${UserNote}">
+        <div class="form-group justified">
+
+            <div th:if="${noteSaved}" style="position: absolute; top: 120px; left: 405px; width: 780px"
+                 class="alert alert-success">Note saved succesfully.
+            </div>
+
+            <div th:if="${noteFailedToSave}" style="position: absolute; top: 120px; left: 405px; width: 780px"
+                 class="alert alert-danger">Title and content of the note must not be empty.
+            </div>
+
+            <div class="col-sm-7" style="position: relative; top: 110px;">
+                <input type="text" name="notetitle" th:field="*{title}" class="form-control title"
+                       placeholder="Note Title"
+                       maxlength="200">
+
+            </div>
+        </div>
+
+        <div class="form-group justified">
+            <div class="col-md-7" style="top: 100px; font-size: 18px; line-height: 18px;">
+                <textarea th:field="*{noteContent}" name="notecontent"
+                          class="form-control textarea" id="edit_textarea" placeholder="Note Content"
+                          rows="19"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group justified">
+            <div class="col-md-7" style="margin-bottom: 20px; top: 90px">
+                <button type="submit" name="submit" class="btn btn-primary">Save</button>
+            </div>
+
+
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

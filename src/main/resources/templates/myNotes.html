@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+</head>
+<body>
+
+<div th:insert="navbar :: #navLoggedin"></div>
+
+<div>
+    <table class="table" style="position: relative">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="UserNote,IterStats : ${notesList}">
+            <td th:text="${IterStats.count}"></td>
+            <td><a th:text="${UserNote.title}" th:href="@{'/EditNote/' + ${UserNote.id}}"></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
